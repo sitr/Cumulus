@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="<#location> weather data" />
+    <meta name="keywords" content="Cumulus, <#location> weather data, weather, data, weather station" />
+    <title><#location> weather</title>
+    <link href="./css/weather.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./scripts/jquery/jquery-2.1.4.min.js"></script>
+  </head>
+
+  <body>
+    <div class="layout_item station_conditions">
+      <h1 class="station_location">Været i <#location></h1>
+      <span class="station_time"><#time></span>
+      <table>
+        <tr class="station_current">
+          <td class="station_forecast"><#forecast></td>
+          <td class="station_temp">
+            <#temp>&nbsp;<#tempunit>
+            <span>Føles som: <#wchill>&nbsp;<#tempunit></span>
+          </td>
+        </tr>
+        <tr>
+          <td>Nedbør siste time:</td>
+          <td><#rhour>&nbsp;<#rainunit></td>
+        </tr>
+        <tr>
+          <td>Nedbør i dag:</td>
+          <td><#rfall>&nbsp;<#rainunit></td>
+        </tr>
+        <tr>
+          <td>Vind (siste 10 min):</td>
+          <td><#wspeed>&nbsp;<#windunit> (<#beaudesc>)</td>
+        </tr>
+        <tr>
+          <td>Vindkast:</td>
+          <td><#wgust>&nbsp;<#windunit></td>
+        </tr>
+        <tr>
+          <td>Vindretning:</td>
+          <td><#avgbearing>&deg; <#wdir></td>
+        </tr>
+      </table>
+    </div>
+    <div class="layout_item station_information">
+      <h2>Stasjonsdata</h2>
+      <table>
+        <tr>
+          <td>Posisjon:</td>
+          <td><#latitude>,&nbsp;<#longitude></td>
+        </tr>
+        <tr>
+          <td>Høyde:</td>
+          <td><#altitude>&nbsp;m.o.h.</td>
+        </tr>
+        <tr>
+          <td>Daggry:</td>
+          <td><#dusk></td>
+        </tr>
+        <tr>
+          <td>Skumring</td>
+          <td><#dawn></td>
+        </tr>
+        <tr>
+          <td>Soloppgang:</td>
+          <td><#sunrise></td>
+        </tr>
+        <tr>
+          <td>Solnedgang:</td>
+          <td><#sunset></td>
+        </tr>
+      </table>
+      <h2>Rekorder i dag</h2>
+      <table>
+        <tr>
+          <td>Maks temperatur:</td>
+          <td><#tempTH>&nbsp;<#tempunit>&nbsp;(kl&nbsp;<#TtempTH>)</td>
+        </tr>
+        <tr>
+          <td>Min temperatur:</td>
+          <td><#tempTL>&nbsp;<#tempunit>&nbsp;(kl&nbsp;<#TtempTL>)</td>
+        </tr>
+      </table>
+    </div>
+    <div class="layout_item weather_forecast">
+      <h2>Varsel for neste 48 timer</h2>
+      <img src="http://www.yr.no/sted/Norge/Vestfold/Re/V%C3%A5le~45898/avansert_meteogram.svg"/>
+    </div>
+    <script>
+      $(document).ready(function() {
+        SetDummyVariables();
+
+        var forecast = $(".station_forecast").text();
+        switch(forecast) {
+          case "Rain":
+            $(".station_forecast").html('<img src="http://www.yr.no/grafikk/sym/svg/10.svg"/>');
+            break;
+          case "Clear":
+            $(".station_forecast").html('<img src="http://www.yr.no/grafikk/sym/svg/01d.svg"/>');
+            break;
+          case "Cloudy":
+            $(".station_forecast").html('<img src="http://www.yr.no/grafikk/sym/svg/04.svg"/>');
+            break;
+          case "Partly Cloudy":
+            $(".station_forecast").html('<img src="http://www.yr.no/grafikk/sym/svg/3d.svg"/>');
+            break;
+        }
+      });
+
+      function SetDummyVariables() {
+         $("h1:contains('<#location>')").html('Været i Våle');
+        $("span:contains('<#time>')").html("Tir 15.09.2015 kl 1020");
+
+        $("td:contains('<#forecast>')").html("Clear");
+        $("td:contains('<#temp>')").html("12,9 °C <span>Føles som 12,0 °C</span>");
+
+        $("td:contains('<#rhour>')").html("2,0 mm");
+        $("td:contains('<#rfall>')").html("28 mm");
+
+        $("td:contains('<#wspeed>')").html("2,7 m/s (lett bris)");
+        $("td:contains('<#wgust>')").html("4,5 m/s");
+        $("td:contains('<#avgbearing>')").html("162° SSE");
+
+        $("td:contains('<#latitude>')").html("N 59° 25&rsquo; 24&quot;, E 10° 16&rsquo; 35&quot");
+        $("td:contains('<#altitude>')").html("121 m");
+        $("td:contains('<#dusk>')").html("kl 0605");
+        $("td:contains('<#dawn>')").html("kl 2022");
+        $("td:contains('<#sunrise>')").html("kl 0646");
+        $("td:contains('<#sunset>')").html("kl 1941");
+
+        $("td:contains('<#tempTH>')").html("20,9 °C (kl 1941)");
+        $("td:contains('<#tempTL>')").html("10,9 °C (kl 0435)");
+      }
+    </script>
+  </body>
+</html>

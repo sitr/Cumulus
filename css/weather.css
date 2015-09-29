@@ -1,0 +1,65 @@
+body {
+  font-size: 17px;
+  background-color: azure;
+}
+
+.layout_item {
+  float: left;
+  width: 400px;
+  height: 400px;
+}
+
+.station_conditions {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.station_current {
+  line-height: 100px;
+}
+
+.station_information {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.station_temp {
+  font-size: 46px;
+  line-height: 46px;
+}
+
+.station_temp span {
+  font-size: 14px;
+  line-height: 14px;
+  display: block;
+}
+
+.weather_forecast {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  /*height: auto;*/
+  overflow-y: hidden;
+  overflow-x: auto;
+  width: 820px;
+}
+
+.weather_forecast img {
+  width: 100%;
+}
+
+.station_today {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
